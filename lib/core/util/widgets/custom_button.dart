@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
           color: color,
         ),
 
-        child:  Row(
+        child: Row(
           mainAxisAlignment: .center,
           children: [
             Text(
@@ -44,7 +44,7 @@ class CustomButton extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-           Icon(color: textColor, icon),
+            Icon(color: textColor, icon),
           ],
         ),
       ),

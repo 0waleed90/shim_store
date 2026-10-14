@@ -98,7 +98,7 @@ class _LogInViewBodyState extends State<LogInViewBody> {
                             return;
                           }
                           context.read<AuthCubit>().logIn(email, password);
-                        },
+                        }, normalEnterButtonText: 'log in',
                       ),
                 const SizedBox(height: 40),
                 Row(

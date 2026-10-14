@@ -6,7 +6,8 @@ class EmptySavedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return const Column(mainAxisAlignment: .center,
+      crossAxisAlignment: .center,
       children: [
         Icon(
           size: 64,
@@ -16,7 +17,7 @@ class EmptySavedItem extends StatelessWidget {
         Text('No Saved Items!', style: Styles.textStyle24),
         Text(
           'You don’t have any saved items. Go to home and add some.',
-          style: Styles.textStyle20,
+          style: Styles.textStyle20,textAlign: .center,
         ),
       ],
     );

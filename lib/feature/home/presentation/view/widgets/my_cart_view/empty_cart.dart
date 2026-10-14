@@ -7,6 +7,8 @@ import '../../../../../../core/util/styles.dart';
       @override
       Widget build(BuildContext context) {
         return const Column(
+          mainAxisAlignment: .center,
+          crossAxisAlignment: .center,
           children: [
             Icon(
               size: 64,
@@ -17,6 +19,7 @@ import '../../../../../../core/util/styles.dart';
             Text(
               'When you add products, they’ll appear here.',
               style: Styles.textStyle20,
+              textAlign: .center,
             ),
           ],
         );

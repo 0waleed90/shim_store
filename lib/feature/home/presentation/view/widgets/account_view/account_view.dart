@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/util/styles.dart';
@@ -15,18 +16,19 @@ class AccountView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            Text('Full Name', style: Styles.textStyle16),
-            CustomTextField(hintText: 'Enter your full name', readOnly: false),
+            Text('Your Name', style: Styles.textStyle16),
+            CustomTextField(
+              hintText: FirebaseAuth.instance.currentUser!.displayName!,
+              readOnly: true,
+            ),
 
             const SizedBox(height: 30),
-            Text('Email', style: Styles.textStyle16),
+            Text('Your Email', style: Styles.textStyle16),
             CustomTextField(
-              hintText: 'Enter your email address',
-              readOnly: false,
+              hintText: FirebaseAuth.instance.currentUser!.email!,
+              readOnly: true,
             ),
-            const SizedBox(height: 30),
-            Text('Your Number', style: Styles.textStyle16),
-            CustomTextField(hintText: '00938444685', readOnly: false),
+
             const SizedBox(height: 30),
           ],
         ),

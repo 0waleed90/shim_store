@@ -48,7 +48,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 60),
-                Text('Create an account', style: Styles.textStyle32),
+                const Text('Create an account', style: Styles.textStyle32),
                 Text(
                   'Lets create your account',
                   style: Styles.textStyle16.copyWith(
@@ -83,19 +83,31 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 ),
                 const SizedBox(height: 30),
                 state is AuthLoading
-                    ? const Center(child: CircularProgressIndicator(color: Colors.black))
+                    ? const Center(
+                        child: CircularProgressIndicator(color: Colors.black),
+                      )
                     : EnterOption(
                         normalEnterOnTap: () {
+                          final name = nameController.text.trim();
                           final email = emailController.text.trim();
                           final password = passwordController.text.trim();
-                          if (email.isEmpty || password.isEmpty) {
+                          if (name.isEmpty ||
+                              email.isEmpty ||
+                              password.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('الرجاء ملء الحقول أولاً')),
+                              const SnackBar(
+                                content: Text('الرجاء ملء الحقول أولاً'),
+                              ),
                             );
                             return;
                           }
-                          context.read<AuthCubit>().createUserWithEmail(email, password);
+                          context.read<AuthCubit>().createUserWithEmail(
+                            email,
+                            password,
+                            name,
+                          );
                         },
+                        normalEnterButtonText: 'Create an account',
                       ),
                 const SizedBox(height: 40),
                 Row(

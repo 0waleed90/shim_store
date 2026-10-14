@@ -1,87 +1,186 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/util/widgets/custom_button.dart';
+import 'package:my_store/feature/home/data/models/product_model/product_model.dart';
+import 'package:my_store/feature/home/presentation/view/widgets/details_item_view/sizes_list_view.dart';
 
 import '../../../../../../core/util/styles.dart';
+import '../../../manger/product_cubit/product_cubit.dart';
 
 class DetailsItemView extends StatelessWidget {
-  const DetailsItemView({super.key});
-
+  const DetailsItemView({super.key, required this.product});
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    bool isSaved = false;
+    List<ProductModel> savedItems = context.watch<ProductCubit>().savedItems;
+
+    for (int i = 0; i < savedItems.length; i++) {
+      if (savedItems[i].title == product.title &&
+          savedItems[i].price == product.price &&
+          savedItems[i].description == product.description &&
+          savedItems[i].category == product.category) {
+        isSaved = true;
+      }
+    }
+    String selectedSize = 's';
+    String imageUrl = '';
+    if (product.images != null && product.images!.isNotEmpty) {
+      imageUrl = product.images!.first;
+      imageUrl = imageUrl.replaceAll(RegExp(r'[\[\]"]'), '');
+    }
     return Scaffold(
-      bottomSheet: Text('data'),
-      appBar: AppBar(centerTitle: true, title: Text('Details')),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Details', style: Styles.textStyle32),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: .start,
-          children: [
-            Stack(
-              children: [
-                Center(
-                  child: ClipRRect(
-                    borderRadius: .circular(10),
-                    child: Image.asset(
-                      'assets/photo/image (2).png',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  Center(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
                     ),
                   ),
-                ),
-                Align(
-                  alignment: .xy(0.7, 1),
-                  child: Container(
-                    height: 48,
-                    width: 48,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: .circular(8),
+                  Positioned(
+                    top: 12,
+                    right: 12,
+                    child: GestureDetector(
+                      onTap: () {
+                        isSaved
+                            ? context.read<ProductCubit>().removeFromSaved(
+                                product.id,
+                                product.title,
+                                product.price,
+                                product.description,
+                                product.category,
+                                product.images!,
+                              )
+                            : context.read<ProductCubit>().addToSaved(
+                                product.id,
+                                product.title,
+                                product.price,
+                                product.description,
+                                product.category,
+                                product.images!,
+                              );
+                      },
+                      child: Container(
+                        height: 48,
+                        width: 48,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+
+                        child: Icon(
+                          color: isSaved ? Colors.red : Colors.black,
+                          isSaved ? Icons.favorite : Icons.favorite_border,
+                        ),
+                      ),
                     ),
-                    child: Icon(size: 25, Icons.favorite_border),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text('regular fit solgan', style: Styles.textStyle24),
-            Row(
-              children: [
-                Icon(Icons.star, color: Color(0xffFCA728)),
-                Text('4.0/5', style: Styles.textStyle14),
-                Text(' (45 reviews)'),
-              ],
-            ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text(product.title, style: Styles.textStyle24),
+              SizedBox(height: 10),
 
-            Text(
-              'The name says it all, the right size slightly snugs the body leaving enough room for comfort in the sleeves and waist.',
-            ),
-            const Spacer(),
-            Divider(),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: .spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: .start,
-                  children: [
-                    Text('Price'),
-                    Text('19.99', style: Styles.textStyle24),
-                  ],
-                ),
+              Row(
+                children: [
+                  Icon(Icons.star, color: Color(0xffFCA728)),
+                  Text('4.0/5', style: Styles.textStyle14),
+                  Text(' (45 reviews)'),
+                ],
+              ),
+              SizedBox(height: 10),
 
-                CustomButton(
-                  icon: Icons.shopping_bag,
-                  text: 'Add to Cart',
-                  color: Colors.black,
-                  textColor: Colors.white,
-                  width: 240,
-                  onTap: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: 50),
-          ],
+              Text(product.description),
+              SizedBox(height: 10),
+              Text('Choose size', style: Styles.textStyle24),
+              SizedBox(height: 10),
+              SizesListView(
+                onSizeSelected: (size) {
+                  selectedSize = size;
+                },
+              ),
+              SizedBox(height: 10),
+              Divider(),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Price'),
+                      Text(
+                        '\$${product.price.toString()}',
+                        style: Styles.textStyle24,
+                      ),
+                    ],
+                  ),
 
+                  CustomButton(
+                    icon: Icons.shopping_bag,
+                    text: 'Add to Cart',
+                    color: Colors.black,
+                    textColor: Colors.white,
+                    width: 240,
+                    onTap: () {
+                      bool isInCart = false;
+                      List<ProductModel> cartItems = context
+                          .read<ProductCubit>()
+                          .cartItems;
+                      for (int i = 0; i < cartItems.length; i++) {
+                        if (cartItems[i].title == product.title &&
+                            cartItems[i].price == product.price &&
+                            cartItems[i].description == product.description &&
+                            cartItems[i].category == product.category) {
+                          isInCart = true;
+                        }
+                      }
+                      isInCart
+                          ? ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'هذا العنصر مضاف بالفعل الى السلة',
+                                ),
+                              ),
+                            )
+                          : {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('تم اضافة العنصر')),
+                              ),
+
+                              context.read<ProductCubit>().addToCart(
+                                product.id,
+                                product.title,
+                                product.price,
+
+                                product.description,
+                                product.category,
+                                product.images!,
+                                selectedSize,
+                              ),
+                            };
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

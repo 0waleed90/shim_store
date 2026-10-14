@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/util/styles.dart';
 import 'package:my_store/core/util/widgets/custom_button.dart';
 import 'package:my_store/feature/home/presentation/view/widgets/discover_view/category_filter_bar.dart';
+
+import '../../../manger/product_cubit/product_cubit.dart';
 
 class FilterBottomSheet extends StatefulWidget {
   const FilterBottomSheet({super.key});
@@ -11,9 +13,9 @@ class FilterBottomSheet extends StatefulWidget {
   State<FilterBottomSheet> createState() => _FilterBottomSheetState();
 }
 
-RangeValues _currrentRangeValues = const RangeValues(0, 19);
-
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
+  double _selectedMaxPrice = 100;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,42 +23,61 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
       child: SizedBox(
         height: 405,
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: .spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Filter', style: Styles.textStyle24),
-                IconButton(onPressed: () {Navigator.of(context,rootNavigator: true).pop();}, icon: Icon(Icons.close)),
+                const Text('Filter', style: Styles.textStyle24),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true).pop();
+                  },
+                  icon: const Icon(Icons.close),
+                ),
               ],
             ),
-            SizedBox(height: 40, child: Expanded(child: Divider())),
-            Text('soted by'),
-            CategoryFilterBar(),
-            SizedBox(height: 40, child: Expanded(child: Divider())),
-            Text('Price'),
-            RangeSlider(
-              values: _currrentRangeValues,
+            const SizedBox(height: 10, child: Divider()),
+            const Text('Sorted by', style: Styles.textStyle16),
+            const SizedBox(height: 10),
+            const CategoryFilterBar(),
+            const SizedBox(height: 10, child: Divider()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Max Price', style: Styles.textStyle16),
+                Text(
+                  '\$${_selectedMaxPrice.round()}',
+                  style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Slider(
+              value: _selectedMaxPrice,
+              min: 0,
               max: 100,
-              divisions: 100,
+              divisions: 50,
               activeColor: Colors.black,
-              labels: RangeLabels(
-                _currrentRangeValues.start.round().toString(),
-                _currrentRangeValues.end.round().toString(),
-              ),
-              onChanged: (RangeValues values) {
+              label: '\$${_selectedMaxPrice.round()}',
+              onChanged: (double value) {
                 setState(() {
-                  _currrentRangeValues = values;
+                  _selectedMaxPrice = value;
                 });
               },
             ),
-            SizedBox(height: 50, child: Expanded(child: Divider())),
+            const SizedBox(height: 20, child: Divider()),
+           Spacer(),
             CustomButton(
               text: 'Apply Filters',
               color: Colors.black,
               textColor: Colors.white,
-              width: 500,
-              onTap: () {},
+              width: double.infinity,
+              onTap: () {
+                context
+                    .read<ProductCubit>()
+                    .priceFilter(_selectedMaxPrice.round());
+                Navigator.of(context, rootNavigator: true).pop();
+              },
             ),
           ],
         ),

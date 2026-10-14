@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:my_store/core/util/app_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/util/styles.dart';
 import '../../../../../core/util/widgets/custom_button.dart';
+import '../../manger/auth_cubit.dart';
 
 class EnterOption extends StatelessWidget {
-  const EnterOption({super.key, required this.normalEnterOnTap});
-final VoidCallback normalEnterOnTap;
+  const EnterOption({
+    super.key,
+    required this.normalEnterOnTap,
+    required this.normalEnterButtonText,
+  });
+  final VoidCallback normalEnterOnTap;
+  final String normalEnterButtonText;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomButton(
-          text: 'Create an account',
-          color: Color(0xffCACACA),
+          text: normalEnterButtonText,
+          color: const Color(0xffCACACA),
           textColor: Colors.white,
           width: 500,
           onTap: () {
@@ -24,7 +29,7 @@ final VoidCallback normalEnterOnTap;
         const SizedBox(height: 25),
         Row(
           children: [
-            Expanded(
+            const Expanded(
               child: Divider(
                 thickness: 2,
                 color: Colors.black,
@@ -32,8 +37,11 @@ final VoidCallback normalEnterOnTap;
                 endIndent: 10,
               ),
             ),
-            Text('Or', style: Styles.textStyle20.copyWith(fontWeight: .w400)),
-            Expanded(
+            Text(
+              'Or',
+              style: Styles.textStyle20.copyWith(fontWeight: FontWeight.w400),
+            ),
+            const Expanded(
               child: Divider(
                 thickness: 2,
                 color: Colors.black,
@@ -51,7 +59,9 @@ final VoidCallback normalEnterOnTap;
           textColor: Colors.black,
           width: 500,
           borderColor: Colors.black12,
-          onTap: () {},
+          onTap: () {
+            context.read<AuthCubit>().signInWithGoogle();
+          },
         ),
         const SizedBox(height: 20),
         CustomButton(
