@@ -17,7 +17,7 @@ class DiscoverView extends StatelessWidget {
       appBar: AppBar(title: Text('Discover', style: Styles.textStyle32)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
-        child: Column(
+        child:Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,7 +60,7 @@ class DiscoverView extends StatelessWidget {
                         builder: (context) => const FilterBottomSheet(),
                       );
                     },
-                    child: Icon(color: Colors.white, Icons.filter_alt),
+                    child: const Icon(color: Colors.white, Icons.filter_alt),
                   ),
                 ),
               ],

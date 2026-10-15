@@ -38,20 +38,23 @@ class SearchView extends StatelessWidget {
                   if (state.products.isEmpty) {
                     return const EmptySearch();
                   }
-                  return GridView.builder(
-                    itemCount: state.products.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 0.65,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 2,
-                        ),
-                    itemBuilder: (context, index) {
-                      return GridViewItem(
-                        product: state.products[index],
-                      );
-                    },
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: GridView.builder(
+                      itemCount: state.products.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: 0.65,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 2,
+                          ),
+                      itemBuilder: (context, index) {
+                        return GridViewItem(
+                          product: state.products[index],
+                        );
+                      },
+                    ),
                   );
                 } else if (state is SearchFailure) {
                   return Center(child: Text(state.errorMessage));

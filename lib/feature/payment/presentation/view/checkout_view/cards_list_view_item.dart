@@ -37,7 +37,7 @@ class CardsListViewItem extends StatelessWidget {
                   payMethodIcon.icon,
                   color: isSelected ? Colors.white : Colors.black,
                 ),
-                Text(
+                 Text(
                   payMethodName,
                   style: Styles.textStyle24.copyWith(
                     fontWeight: .w600,

@@ -20,16 +20,17 @@ class CustomTextField extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
   final ValueChanged<String>? onChanged;
   final TextEditingController? controller;
-
   @override
   Widget build(BuildContext context) {
     return TextField(
+
     controller: controller,
       onChanged: onChanged,
       onSubmitted: onSubmitted,
       onTap: onTap,
       readOnly: readOnly,
       decoration: InputDecoration(
+
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         enabledBorder: const OutlineInputBorder(

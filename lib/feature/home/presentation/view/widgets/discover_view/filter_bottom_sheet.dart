@@ -66,7 +66,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               },
             ),
             const SizedBox(height: 20, child: Divider()),
-           Spacer(),
+           const Spacer(),
             CustomButton(
               text: 'Apply Filters',
               color: Colors.black,

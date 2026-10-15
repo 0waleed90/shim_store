@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: onItemTaped,
-        destinations: [
+        destinations: const [
           NavigationDestination(
             selectedIcon: Icon(Icons.home_outlined, color: Colors.black),
             icon: Icon(Icons.home_outlined, color: Color(0xff979797)),

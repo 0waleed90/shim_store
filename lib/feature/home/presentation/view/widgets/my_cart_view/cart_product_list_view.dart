@@ -14,12 +14,12 @@ class CartProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
+      height: 300,
       child: BlocBuilder<ProductCubit, ProductState>(
         builder: (context, state) {
           if (state is ProductSuccess) {
             if (state.cartItems.isEmpty) {
-              return EmptyCart();
+              return const EmptyCart();
             }
             return ListView.builder(
               itemCount: state.cartItems.length,
@@ -36,8 +36,8 @@ class CartProductListView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: .center,
                 children: [
-                  Icon(Icons.wifi_off, size: 64, color: Colors.grey),
-                  SizedBox(height: 16),
+                  const Icon(Icons.wifi_off, size: 64, color: Colors.grey),
+                  const SizedBox(height: 16),
 
                   Text(
                     state.errorMessage,
@@ -45,7 +45,7 @@ class CartProductListView extends StatelessWidget {
                     textAlign: .center,
                   ),
 
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   CustomButton(
                     text: 'Retry',
                     color: Colors.black,
@@ -59,9 +59,9 @@ class CartProductListView extends StatelessWidget {
               ),
             );
           } else if (state is ProductLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else {
-            return EmptyCart();
+            return const EmptyCart();
           }
         },
       ),

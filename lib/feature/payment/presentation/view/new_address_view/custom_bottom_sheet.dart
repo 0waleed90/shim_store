@@ -25,7 +25,7 @@ class CustomBottomSheet extends StatelessWidget {
             Row(
               mainAxisAlignment: .spaceBetween,
               children: [
-                Text('Address', style: Styles.textStyle22),
+                const Text('Address', style: Styles.textStyle22),
                 IconButton(
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).pop();
@@ -34,12 +34,12 @@ class CustomBottomSheet extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20, child: Divider()),
+            const SizedBox(height: 20, child: Divider()),
             Text(
               'Address Nickname',
               style: Styles.textStyle20.copyWith(fontWeight: .w400),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CustomTextField(
               hintText: 'Home',
               readOnly: false,
@@ -47,15 +47,15 @@ class CustomBottomSheet extends StatelessWidget {
                 addressNickName = value;
               },
             ),
-            SizedBox(height: 10),
-            SizedBox(height: 20, child: Divider()),
+            const SizedBox(height: 10),
+            const SizedBox(height: 20, child: Divider()),
             Text(
               'Full Address',
               style: Styles.textStyle20.copyWith(fontWeight: .w400),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CustomTextField(hintText: fullAddressText, readOnly: true),
-            Spacer(),
+            const Spacer(),
             CustomButton(
               text: 'Add',
               color: Colors.black,

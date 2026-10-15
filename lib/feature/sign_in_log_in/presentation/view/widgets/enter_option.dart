@@ -63,17 +63,6 @@ class EnterOption extends StatelessWidget {
             context.read<AuthCubit>().signInWithGoogle();
           },
         ),
-        const SizedBox(height: 20),
-        CustomButton(
-          icon: Icons.gite_outlined,
-          text: 'Sign Up with Facebook',
-          color: Colors.blue,
-          textColor: Colors.white,
-
-          width: 500,
-          borderColor: Colors.black12,
-          onTap: () {},
-        ),
       ],
     );
   }

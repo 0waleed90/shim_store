@@ -30,14 +30,14 @@ class CountControlWidget extends StatelessWidget {
   GestureDetector operator(String opr, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child:Container(
         height: 23,
         width: 23,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: Colors.black),
         ),
-        child: Center(child: Text(opr)),
+        child:  Center(child: Text(opr)),
       ),
     );
   }

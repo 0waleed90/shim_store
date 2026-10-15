@@ -26,7 +26,7 @@ class SavedView extends StatelessWidget {
                   return EmptySavedItem();
                 }
                 return GridView.builder(
-                  itemCount:state.savedItems.length ,
+                  itemCount: state.savedItems.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: 0.8,
                     crossAxisSpacing: 10,
@@ -67,7 +67,7 @@ class SavedView extends StatelessWidget {
                   ),
                 );
               } else if (state is ProductLoading) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               } else {
                 return EmptySavedItem();
               }

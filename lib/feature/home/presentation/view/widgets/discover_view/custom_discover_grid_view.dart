@@ -54,7 +54,10 @@ class CustomDiscoverGridView extends StatelessWidget {
               ],
             ),
           );
-        } else {
+        }else if
+        (state is ProductLoading){ return const Center(child: CircularProgressIndicator());}
+
+        else {
           return const Center(child: CircularProgressIndicator());
         }
       },

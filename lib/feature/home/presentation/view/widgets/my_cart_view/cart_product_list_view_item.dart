@@ -63,8 +63,8 @@ final int cartItemCount;
                   crossAxisAlignment: .start,
                   children: [
                     Text(product.title, style: Styles.textStyle14,),
-                    Text('product.size!'),
-                    SizedBox(height: 30),
+                    const Text('product.size!'),
+                    const SizedBox(height: 30),
                     Text('${product.price}\$', style: Styles.textStyle14,),
                   ],
                 ),
@@ -85,9 +85,9 @@ final int cartItemCount;
 
                     );
                   },
-                  icon: Icon(Icons.delete, color: Colors.red),
+                  icon: const Icon(Icons.delete, color: Colors.red),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 CountControlWidget(
                   index: index,
                   cartItemCount: product.quantity,

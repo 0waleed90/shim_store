@@ -18,6 +18,7 @@ class _CategoryFilterBarState extends State<CategoryFilterBar> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
+
         final allProducts = context.read<ProductCubit>().allProducts;
 
         // تجميع التصنيفات الفريدة لمنع التكرار

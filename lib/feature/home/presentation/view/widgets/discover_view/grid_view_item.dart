@@ -78,7 +78,7 @@ class GridViewItem extends StatelessWidget {
                               product!.price,
                               product!.description,
                               product!.category,
-                              product!.images ?? [],
+                              product!.images ?? const [],
                             )
                           : context.read<ProductCubit>().addToSaved(
                               product!.id,
@@ -86,7 +86,7 @@ class GridViewItem extends StatelessWidget {
                               product!.price,
                               product!.description,
                               product!.category,
-                              product!.images ?? [],
+                              product!.images ?? const [],
                             );
                     },
                     child: Container(

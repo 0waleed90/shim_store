@@ -44,12 +44,12 @@ class _NewAddressViewState extends State<NewAddressView> {
             builder: (context) => CustomBottomSheet(fullAddressText: addressText),
           );
         },
-        child: Icon(Icons.location_on),
+        child: const Icon(Icons.location_on),
       ),
 
       appBar: AppBar(
         centerTitle: true,
-        title: Text('New Address', style: Styles.textStyle32),
+        title: const Text('New Address', style: Styles.textStyle32),
       ),
       body: FlutterMap(
         options: MapOptions(
@@ -59,7 +59,7 @@ class _NewAddressViewState extends State<NewAddressView> {
               selectedLocation = point;
             });
           },
-          initialCenter: LatLng(36.206892, 37.147481),
+          initialCenter: const LatLng(36.206892, 37.147481),
           initialZoom: 14,
         ),
         children: [
@@ -73,7 +73,7 @@ class _NewAddressViewState extends State<NewAddressView> {
               markers: [
                 Marker(
                   point: selectedLocation!,
-                  child: Icon(Icons.location_on, size: 64, color: Colors.red),
+                  child: const Icon(Icons.location_on, size: 64, color: Colors.red),
                 ),
               ],
             ),

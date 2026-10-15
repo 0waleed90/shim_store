@@ -30,20 +30,20 @@ class _NewCardViewState extends State<NewCardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar:AppBar(
         centerTitle: true,
         title: Text('New Card', style: Styles.textStyle32),
       ),
-      body: Padding(
+      body:Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            SizedBox(height: 10, child: Divider()),
-            Text('Add Debit or Credit Card', style: Styles.textStyle22),
-            SizedBox(height: 20),
-            Text('Card Number', style: Styles.textStyle22),
-            SizedBox(height: 10),
+            const SizedBox(height: 10, child: Divider()),
+            const Text('Add Debit or Credit Card', style: Styles.textStyle22),
+            const SizedBox(height: 20),
+            const Text('Card Number', style: Styles.textStyle22),
+            const SizedBox(height: 10),
             CustomTextField(
               onChanged: (value) {
                 if (value.isNotEmpty) {
@@ -56,7 +56,7 @@ class _NewCardViewState extends State<NewCardView> {
               hintText: 'Enter your card number',
               readOnly: false,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: .start,
@@ -69,7 +69,7 @@ class _NewCardViewState extends State<NewCardView> {
                         'Expiry Date',
                         style: Styles.textStyle20.copyWith(fontWeight: .w500),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       CustomTextField(
                         onChanged: (value) {
                           if (value.isNotEmpty) {
@@ -85,7 +85,7 @@ class _NewCardViewState extends State<NewCardView> {
                     ],
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: .start,
@@ -94,7 +94,7 @@ class _NewCardViewState extends State<NewCardView> {
                         'Security Code',
                         style: Styles.textStyle20.copyWith(fontWeight: .w500),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       CustomTextField(
                         onChanged: (value) {
                           if (value.isNotEmpty) {
@@ -112,11 +112,11 @@ class _NewCardViewState extends State<NewCardView> {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             CustomButton(
               text: 'Add Card',
-              color: checkCanAddCart() ? Colors.black : Color(0xffC4C4C4),
-              textColor: Color(0xfff8f8f8),
+              color: checkCanAddCart() ? Colors.black : const Color(0xffC4C4C4),
+              textColor: const Color(0xfff8f8f8),
               width: 500,
               onTap: () {
                 if (checkCanAddCart()) {
@@ -129,7 +129,7 @@ class _NewCardViewState extends State<NewCardView> {
                 }
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),

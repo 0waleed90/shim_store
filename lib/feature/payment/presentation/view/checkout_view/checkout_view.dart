@@ -138,7 +138,7 @@ class CheckoutView extends StatelessWidget {
                 leftText: 'Total',
                 rightText: "${total.toString()} \$",
               ),
-              SizedBox(height: 80),
+              SizedBox(height: 30),
               CustomButton(
                 text: 'Place Order',
                 color: Colors.black,

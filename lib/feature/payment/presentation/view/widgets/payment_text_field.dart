@@ -19,7 +19,7 @@ class PaymentTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Container(
+      child:Container(
         height: 60,
         decoration: BoxDecoration(
           borderRadius: .circular(10),
@@ -30,7 +30,7 @@ class PaymentTextField extends StatelessWidget {
             const SizedBox(width: 20,),
             prefixIcon,
             const SizedBox(width: 10),
-            Text(cardNumber, style: Styles.textStyle22),
+             Text(cardNumber, style: Styles.textStyle22),
             const Spacer(),
             IconButton(onPressed: onSuffixIconPressed, icon: suffixIcon),
           ],

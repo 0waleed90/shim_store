@@ -5,6 +5,6 @@ class LogInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LogInViewBody(),);
+    return const Scaffold(body: LogInViewBody(),);
   }
 }

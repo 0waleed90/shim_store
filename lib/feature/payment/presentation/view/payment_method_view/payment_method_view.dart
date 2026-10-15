@@ -24,19 +24,19 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Method', style: Styles.textStyle32),
+        title: const Text('Payment Method', style: Styles.textStyle32),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: Column(
           children: [
-            SizedBox(height: 10, child: Divider()),
+            const SizedBox(height: 10, child: Divider()),
             Expanded(
               child: BlocBuilder<CardCubit, CardState>(
                 builder: (context, state) {
                   if (state is CardSuccess) {
-                    return ListView.builder(
+                    return  ListView.builder(
                       itemCount: state.cards.length,
                       itemBuilder: (context, index) {
                         return PaymentTextField(
@@ -56,7 +56,7 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                       },
                     );
                   } else {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   }
                 },
               ),
@@ -84,7 +84,7 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                 GoRouter.of(context).pop();
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),

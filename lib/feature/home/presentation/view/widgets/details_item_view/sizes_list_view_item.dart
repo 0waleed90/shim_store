@@ -28,7 +28,7 @@ class SizesListViewItem extends StatelessWidget {
             borderRadius: .circular(10),
           ),
 
-          child: Center(
+          child:  Center(
             child: Text(
               size,
               style: Styles.textStyle24.copyWith(

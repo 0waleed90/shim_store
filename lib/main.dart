@@ -59,7 +59,3 @@ class MyStore extends StatelessWidget {
   }
 }
 
-//web clinet secret
-//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
-// map api key
-//AIzaSyDES2-EsoKnbwUyjNp8YjA6dVK4RLH7yCc

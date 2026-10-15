@@ -34,7 +34,7 @@ class DetailsItemView extends StatelessWidget {
         centerTitle: true,
         title: Text('Details', style: Styles.textStyle32),
       ),
-      body: Padding(
+      body:Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
@@ -94,28 +94,28 @@ class DetailsItemView extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(product.title, style: Styles.textStyle24),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
-              Row(
+              const Row(
                 children: [
                   Icon(Icons.star, color: Color(0xffFCA728)),
                   Text('4.0/5', style: Styles.textStyle14),
                   Text(' (45 reviews)'),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               Text(product.description),
-              SizedBox(height: 10),
-              Text('Choose size', style: Styles.textStyle24),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
+              const Text('Choose size', style: Styles.textStyle24),
+              const SizedBox(height: 10),
               SizesListView(
                 onSizeSelected: (size) {
                   selectedSize = size;
                 },
               ),
-              SizedBox(height: 10),
-              Divider(),
+              const SizedBox(height: 10),
+              const Divider(),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,7 +123,7 @@ class DetailsItemView extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Price'),
+                      const Text('Price'),
                       Text(
                         '\$${product.price.toString()}',
                         style: Styles.textStyle24,
@@ -152,7 +152,7 @@ class DetailsItemView extends StatelessWidget {
                       }
                       isInCart
                           ? ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text(
                                   'هذا العنصر مضاف بالفعل الى السلة',
                                 ),
@@ -160,7 +160,7 @@ class DetailsItemView extends StatelessWidget {
                             )
                           : {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('تم اضافة العنصر')),
+                                const SnackBar(content: Text('تم اضافة العنصر')),
                               ),
 
                               context.read<ProductCubit>().addToCart(

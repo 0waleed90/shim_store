@@ -19,34 +19,38 @@ class MyCartView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Scaffold(
         appBar: AppBar(title: Text('My Cart', style: Styles.textStyle32)),
-        body: BlocBuilder<ProductCubit, ProductState>(
+        body:BlocBuilder<ProductCubit, ProductState>(
           builder: (context, state) {
             int total = context.read<ProductCubit>().getTotalOfCartItem();
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                CartProductListView(),
-                PriceDetails(
-                  leftText: 'Sub-total',
-                  rightText:"${total.toString()} \$",
-                ),
-                PriceDetails(leftText: 'VAT (%)', rightText: r'0.00 $'),
-                PriceDetails(leftText: 'Shipping fee', rightText: r'0 $'),
-
-                Expanded(child: Divider()),
-                PriceDetails(leftText: 'Total', rightText: "${total.toString()} \$"),
-
-                SizedBox(height: 40),
-                CustomButton(
-                  text: 'Go To Checkout',
-                  color: Colors.black,
-                  textColor: Colors.white,
-                  width: 500,
-                  onTap: () {
-                    GoRouter.of(context).push(AppRouter.kCheckoutView,extra: total);
-                  },
-                ),
-              ],
+            return  SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const CartProductListView(),
+                  PriceDetails(
+                    leftText: 'Sub-total',
+                    rightText:"${total.toString()} \$",
+                  ),
+                  const PriceDetails(leftText: 'VAT (%)', rightText: r'0.00 $'),
+                  const PriceDetails(leftText: 'Shipping fee', rightText: r'0 $'),
+              
+                  SizedBox(
+                      height: 20,
+                      child: const Divider()),
+                  PriceDetails(leftText: 'Total', rightText: "${total.toString()} \$"),
+              
+                  const SizedBox(height: 40),
+                  CustomButton(
+                    text: 'Go To Checkout',
+                    color: Colors.black,
+                    textColor: Colors.white,
+                    width: 500,
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.kCheckoutView,extra: total);
+                    },
+                  ),const SizedBox(height: 30,)
+                ],
+              ),
             );
           },
         ),
